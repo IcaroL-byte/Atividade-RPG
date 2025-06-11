@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ClasseFeiticeiro : Personagem
@@ -9,11 +10,14 @@ public class ClasseFeiticeiro : Personagem
     public int destreza;
     [SerializeField] 
     private CajadoMago magoArma;
-
+    [SerializeField]
+    private Habilidade habilidade;
+    public float numeroDaArma;
+    
     //setando o cajado
     public enum CajadoMago
     {
-        Magia_caótica, Catalizador_Izalith, Catalizador_Oriental
+        Cajado_caótico, Catalizador_Izalith, Catalizador_Oriental
     }
     
     public void MudarArma(CajadoMago arma)
@@ -24,6 +28,22 @@ public class ClasseFeiticeiro : Personagem
     public CajadoMago Arma
     {
         get {return this.magoArma;}
+    }
+    
+    //
+    public enum Habilidade
+    {
+        Magia_caótica, Magia_Divina
+    }
+    
+    public void MudarHabilidade(Habilidade habilidade)
+    {
+        this.habilidade = habilidade;
+    }
+
+    public Habilidade HabilidadeMago
+    {
+        get {return this.habilidade;}
     }
     
     //definições nome
@@ -87,12 +107,13 @@ public class ClasseFeiticeiro : Personagem
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
     void Update()
     {
+        DanoDoInimigo();
         
     }
     
@@ -102,14 +123,17 @@ public class ClasseFeiticeiro : Personagem
 
         switch (magoArma)
         {
-            case CajadoMago.Magia_caótica:
+            case CajadoMago.Cajado_caótico:
                 dano = forcaDoPlayer() + 10;
+                numeroDaArma = 1;
                 break;
             case CajadoMago.Catalizador_Izalith:
                 dano = forcaDoPlayer() + 12;
+                numeroDaArma = 2;
                 break;
             case CajadoMago.Catalizador_Oriental:
                 dano = forcaDoPlayer() + 22;
+                numeroDaArma = 3;
                 break;
         }
         
@@ -117,5 +141,7 @@ public class ClasseFeiticeiro : Personagem
         
         return dano;
     }
+
+    
     
 }
