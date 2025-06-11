@@ -12,6 +12,8 @@ public class ClasseFeiticeiro : Personagem
     private CajadoMago magoArma;
     [SerializeField]
     private Habilidade habilidade;
+    [SerializeField] 
+    private Ultimate magoSpecial;
     public float numeroDaArma;
     
     //setando o cajado
@@ -30,7 +32,7 @@ public class ClasseFeiticeiro : Personagem
         get {return this.magoArma;}
     }
     
-    //
+    //Setando Habilidade
     public enum Habilidade
     {
         Magia_caótica, Magia_Divina
@@ -44,6 +46,22 @@ public class ClasseFeiticeiro : Personagem
     public Habilidade HabilidadeMago
     {
         get {return this.habilidade;}
+    }
+    
+    //Setando Ultimate
+    public enum Ultimate
+    {
+        Explosão_Arcana, Sopro_Do_Dragão
+    }
+    
+    public void MudarUltimate(Ultimate magoSpecial)
+    {
+        this.magoSpecial = magoSpecial;
+    }
+
+    public Ultimate UltimateMago
+    {
+        get {return this.magoSpecial;}
     }
     
     //definições nome
@@ -142,6 +160,47 @@ public class ClasseFeiticeiro : Personagem
         return dano;
     }
 
+    public int HabilidadeBase()
+    {
+        int dano = 0;
+
+        switch (habilidade)
+        {
+            case Habilidade.Magia_caótica:
+                dano = forcaDoPlayer() + 10;
+                
+                break;
+            case Habilidade.Magia_Divina:
+                dano = forcaDoPlayer() + 12;
+                
+                break;
+            
+        }
+        
+        // dano do ataque com a arma
+        
+        return dano;
+    }
     
-    
+    public int UltimateBase()
+    {
+        int dano = 0;
+
+        switch (magoSpecial)
+        {
+            case Ultimate.Explosão_Arcana:
+                dano = forcaDoPlayer() + 10;
+                
+                break;
+            case Ultimate.Sopro_Do_Dragão:
+                dano = forcaDoPlayer() + 12;
+                
+                break;
+            
+        }
+        
+        // dano do ataque com a arma
+        
+        return dano;
+    }
 }

@@ -24,7 +24,20 @@ public class Teste : MonoBehaviour
         Debug.Log("Você tem " + classeFeiticeiro.conhecimento + " de conhecimento");
         Debug.Log("Sua destreza é igual a " + classeFeiticeiro.destreza);
 
-        
+        if (classeFeiticeiro.numeroDaArma == 1)
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
+
+        if (classeFeiticeiro.numeroDaArma == 2)
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
+
+        if (classeFeiticeiro.numeroDaArma == 3)
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
     }
 
     // Update is called once per frame
