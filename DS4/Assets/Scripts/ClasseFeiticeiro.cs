@@ -15,6 +15,9 @@ public class ClasseFeiticeiro : Personagem
     [SerializeField] 
     private Ultimate magoSpecial;
     public float numeroDaArma;
+    public float numeroDaHabilidade;
+    public float numeroDaUlti;
+    
     
     //setando o cajado
     public enum CajadoMago
@@ -132,7 +135,8 @@ public class ClasseFeiticeiro : Personagem
     void Update()
     {
         DanoDoInimigo();
-        
+        HabilidadeBase();
+        UltimateBase();
     }
     
     public int DanoDoInimigo()
@@ -168,11 +172,11 @@ public class ClasseFeiticeiro : Personagem
         {
             case Habilidade.Magia_caótica:
                 dano = forcaDoPlayer() + 10;
-                
+                numeroDaHabilidade = 1;
                 break;
             case Habilidade.Magia_Divina:
                 dano = forcaDoPlayer() + 12;
-                
+                numeroDaHabilidade = 2;
                 break;
             
         }
@@ -189,12 +193,12 @@ public class ClasseFeiticeiro : Personagem
         switch (magoSpecial)
         {
             case Ultimate.Explosão_Arcana:
-                dano = forcaDoPlayer() + 10;
-                
+                dano = forcaDoPlayer() + 20;
+                numeroDaUlti = 1;
                 break;
             case Ultimate.Sopro_Do_Dragão:
-                dano = forcaDoPlayer() + 12;
-                
+                dano = forcaDoPlayer() + 32;
+                numeroDaUlti = 2;
                 break;
             
         }
@@ -202,5 +206,32 @@ public class ClasseFeiticeiro : Personagem
         // dano do ataque com a arma
         
         return dano;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("inimigo"))
+        {
+            if (numeroDaArma == 1)
+            {
+                Debug.Log("voce deu " + (forca_Ataque + 10) + " de dano");
+                mana +=1;
+                Debug.Log("Seu personagem está com " + mana + " de mana");
+            }
+
+            else if (numeroDaArma == 2)
+            {
+                Debug.Log("voce deu " + (forca_Ataque + 12) + " de dano");
+                mana +=1;
+                Debug.Log("Seu personagem está com " + mana + " de mana");
+            }
+
+            else
+            {
+                Debug.Log("voce deu " + (forca_Ataque + 22) + " de dano");
+                mana +=1;
+                Debug.Log("Seu personagem está com " + mana + " de mana");
+            }
+        }
     }
 }

@@ -24,26 +24,45 @@ public class Teste : MonoBehaviour
         Debug.Log("Você tem " + classeFeiticeiro.conhecimento + " de conhecimento");
         Debug.Log("Sua destreza é igual a " + classeFeiticeiro.destreza);
 
-        if (classeFeiticeiro.numeroDaArma == 1)
-        {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }
-
-        if (classeFeiticeiro.numeroDaArma == 2)
-        {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }
-
-        if (classeFeiticeiro.numeroDaArma == 3)
-        {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && classeFeiticeiro.mana >= 50)
+        {
+            if (classeFeiticeiro.numeroDaHabilidade == 1)
+            {
+                Debug.Log("Voce causou " + (personagem.forca_Ataque + 10) + " de dano");
+                classeFeiticeiro.mana -= 50;
+                Debug.Log("Seu personagem está com " + classeFeiticeiro.mana + " de mana");
+            }
+
+            else
+            {
+                Debug.Log("Voce causou " + (personagem.forca_Ataque + 12) + " de dano");
+                classeFeiticeiro.mana -= 50;
+                Debug.Log("Seu personagem está com " + classeFeiticeiro.mana + " de mana");
+            }
+        }
         
+        if (Input.GetKeyDown(KeyCode.X) && classeFeiticeiro.mana >= 100)
+        {
+            if (classeFeiticeiro.numeroDaUlti == 1)
+            {
+                Debug.Log("Voce causou " + (personagem.forca_Ataque + 20) + " de dano com a Explosão Arcana");
+                classeFeiticeiro.mana -= 100;
+                Debug.Log("Seu personagem está com " + classeFeiticeiro.mana + " de mana");
+            }
+
+            else
+            {
+                Debug.Log("Voce causou " + (personagem.forca_Ataque + 32) + " de dano com o Sopro do Dragao");
+                classeFeiticeiro.mana -= 100;
+                Debug.Log("Seu personagem está com " + classeFeiticeiro.mana + " de mana");
+            }
+        }
     }
     
     
